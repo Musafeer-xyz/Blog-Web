@@ -1,0 +1,1 @@
+React is component-based, allowing developers to build encapsulated components that manage their own state. This approach helps in building complex, interactive UIs with less code and more organized structure.
