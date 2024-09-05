@@ -1,0 +1,1 @@
+JavaScript closures allow functions to access variables from an outer function's scope even after the outer function has returned. This is possible because of the way JavaScript handles variable scoping, particularly the concept of lexical scoping.
