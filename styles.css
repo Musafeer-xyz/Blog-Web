@@ -1,8 +1,14 @@
-/* General Styling */
+/* Basic Reset and General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     background-color: #1e2a38;
     color: #cfd8dc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -19,7 +25,7 @@ a:hover {
 /* Header Styling */
 header {
     background-color: #263238;
-    padding: 20px;
+    padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -41,22 +47,70 @@ header h1 {
 header ul {
     list-style: none;
     display: flex;
+    gap: 15px;
 }
 
 header ul li {
-    margin-left: 20px;
+    margin: 0;
 }
 
 /* Main Content Styling */
 main {
-    margin-top: 80px;
+    margin-top: 70px;
     padding: 20px;
-}
-
-.blog-list {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+/* Add Post Form Styling */
+.add-post-form {
+    background-color: #263238;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-post-form h2 {
+    color: #90caf9;
+    margin-bottom: 15px;
+}
+
+.add-post-form input,
+.add-post-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #37474f;
+    color: #cfd8dc;
+}
+
+.add-post-form button {
+    background-color: #90caf9;
+    color: #263238;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-post-form button:hover {
+    background-color: #bbdefb;
+}
+
+/* Blog List */
+.blog-list {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
+    width: 100%;
 }
 
 /* Blog Post Styling */
@@ -64,8 +118,12 @@ main {
     background-color: #37474f;
     border-radius: 8px;
     padding: 20px;
+    max-width: 100%;
+    width: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    flex: 1 1 calc(33% - 20px);
+    box-sizing: border-box;
 }
 
 .post-preview:hover {
@@ -91,6 +149,8 @@ main {
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
+    max-width: 800px;
+    width: 100%;
 }
 
 .full-post h2 {
@@ -122,4 +182,40 @@ footer {
     color: #cfd8dc;
     text-align: center;
     padding: 15px;
+}
+
+/* Responsive Design: Mobile View */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .post-preview {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .full-post {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .post-preview {
+        padding: 15px;
+    }
+
+    .full-post {
+        padding: 15px;
+    }
 }
