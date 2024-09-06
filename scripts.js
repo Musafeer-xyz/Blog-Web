@@ -1,8 +1,8 @@
-// Example data for blog posts
-const posts = [
-    { id: 1, title: "Understanding JavaScript Closures", content: "Closures are a fundamental concept in JavaScript that allow functions to access variables from an enclosing scope...", file: "post1.txt" },
-    { id: 2, title: "CSS Grid vs Flexbox: When to Use Which?", content: "CSS Grid and Flexbox are powerful layout systems in CSS that provide developers with flexible ways to design web pages...", file: "post2.txt" },
-    { id: 3, title: "Getting Started with React", content: "React is a popular JavaScript library for building user interfaces, particularly for single-page applications...", file: "post3.txt" },
+// Example initial data for blog posts
+let posts = [
+    { id: 1, title: "Understanding JavaScript Closures", content: "Closures are a fundamental concept in JavaScript that allow functions to access variables from an enclosing scope...", file: "post1.txt", category: "JavaScript" },
+    { id: 2, title: "CSS Grid vs Flexbox: When to Use Which?", content: "CSS Grid and Flexbox are powerful layout systems in CSS that provide developers with flexible ways to design web pages...", file: "post2.txt", category: "CSS" },
+    { id: 3, title: "Getting Started with React", content: "React is a popular JavaScript library for building user interfaces, particularly for single-page applications...", file: "post3.txt", category: "React" },
 ];
 
 // Function to load posts into the blog list
@@ -41,5 +41,34 @@ function loadFullPost(file, title) {
         });
 }
 
+// Function to handle adding a new post
+function addPost(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
+
+    // Get form values
+    const title = document.getElementById('postTitle').value;
+    const content = document.getElementById('postContent').value;
+    const category = document.getElementById('postCategory').value;
+
+    // Create a new post object
+    const newPost = {
+        id: posts.length + 1,
+        title,
+        content,
+        category,
+        file: null // No file associated since it's not from a text file
+    };
+
+    // Add the new post to the array and reload the posts
+    posts.push(newPost);
+    loadPosts();
+
+    // Reset the form
+    document.getElementById('postForm').reset();
+}
+
 // Load posts when the page loads
 window.onload = loadPosts;
+
+// Add event listener for the form
+document.getElementById('postForm').addEventListener('submit', addPost);
