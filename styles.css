@@ -5,53 +5,87 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
 header {
-    background-color: #333;
+    background-color: #0d47a1;
+    padding: 20px;
     color: white;
-    padding: 15px;
-    text-align: center;
 }
 
-.container {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#searchBar {
-    padding: 10px;
-    width: 200px;
+#nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-main {
+#nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#searchBar {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+}
+
+h2 {
+    color: #90caf9;
+    margin: 20px 0;
+}
+
+#featured {
+    background-color: #1e88e5;
     padding: 20px;
+}
+
+.carousel {
     display: flex;
-    justify-content: space-between;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.book-slide {
+    width: 150px;
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .book-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    width: 70%;
+    margin-top: 20px;
 }
 
 .book-item {
-    background-color: white;
+    background-color: #212121;
     padding: 15px;
-    border: 1px solid #ddd;
-    width: 200px;
+    border-radius: 5px;
+    width: 220px;
     text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    color: #90caf9;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 .book-item img {
-    width: 100px;
-    height: 150px;
+    width: 150px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -59,31 +93,38 @@ main {
     margin: 10px 0;
 }
 
-.book-item p {
-    font-size: 14px;
-    color: #333;
-}
-
 .book-item button {
-    background-color: #28a745;
+    background-color: #0d47a1;
     color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
 }
 
+#category-filter button {
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
 aside {
-    width: 25%;
+    background-color: #1c1c1c;
     padding: 20px;
-    background-color: #fff;
-    border-left: 1px solid #ddd;
+    width: 300px;
+    float: right;
+    margin-top: 20px;
+    border-radius: 5px;
 }
 
 footer {
+    background-color: #0d47a1;
+    color: white;
     text-align: center;
     padding: 10px;
-    background-color: #333;
-    color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
