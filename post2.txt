@@ -1,1 +1,0 @@
-CSS Grid is a two-dimensional layout system, allowing for more complex layouts, whereas Flexbox is one-dimensional, best suited for simpler, linear layouts. Choosing the right one depends on the design needs of the project.
