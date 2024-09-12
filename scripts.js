@@ -1,74 +1,61 @@
-// Example initial data for blog posts
-let posts = [
-    { id: 1, title: "Understanding JavaScript Closures", content: "Closures are a fundamental concept in JavaScript that allow functions to access variables from an enclosing scope...", file: "post1.txt", category: "JavaScript" },
-    { id: 2, title: "CSS Grid vs Flexbox: When to Use Which?", content: "CSS Grid and Flexbox are powerful layout systems in CSS that provide developers with flexible ways to design web pages...", file: "post2.txt", category: "CSS" },
-    { id: 3, title: "Getting Started with React", content: "React is a popular JavaScript library for building user interfaces, particularly for single-page applications...", file: "post3.txt", category: "React" },
+const books = [
+    { id: 1, title: "Book 1", author: "Author 1", price: 12.99, image: "images/book1.jpg" },
+    { id: 2, title: "Book 2", author: "Author 2", price: 9.99, image: "images/book2.jpg" },
+    { id: 3, title: "Book 3", author: "Author 3", price: 15.99, image: "images/book3.jpg" },
+    { id: 4, title: "Book 4", author: "Author 4", price: 8.99, image: "images/book4.jpg" }
 ];
 
-// Function to load posts into the blog list
-function loadPosts() {
-    const blogList = document.getElementById('blog-list');
-    blogList.innerHTML = '';
+const cart = [];
+const bookList = document.getElementById('book-list');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
 
-    posts.forEach(post => {
-        const postPreview = document.createElement('div');
-        postPreview.className = 'post-preview';
-        postPreview.innerHTML = `
-            <h3>${post.title}</h3>
-            <p>${post.content}</p>
+// Function to display books
+function displayBooks(books) {
+    bookList.innerHTML = '';
+    books.forEach(book => {
+        const bookItem = document.createElement('div');
+        bookItem.classList.add('book-item');
+        bookItem.innerHTML = `
+            <img src="${book.image}" alt="${book.title}">
+            <h3>${book.title}</h3>
+            <p>${book.author}</p>
+            <p>$${book.price.toFixed(2)}</p>
+            <button onclick="addToCart(${book.id})">Add to Cart</button>
         `;
-        postPreview.addEventListener('click', () => loadFullPost(post.file, post.title));
-        blogList.appendChild(postPreview);
+        bookList.appendChild(bookItem);
     });
 }
 
-// Function to load the full blog post content
-function loadFullPost(file, title) {
-    fetch(file)
-        .then(response => response.text())
-        .then(data => {
-            const blogList = document.getElementById('blog-list');
-            blogList.innerHTML = `
-                <div class="full-post">
-                    <h2>${title}</h2>
-                    <p>${data}</p>
-                    <button onclick="loadPosts()">Back to Posts</button>
-                </div>
-            `;
-        })
-        .catch(error => {
-            console.error('Error loading full post:', error);
-        });
+// Function to add book to cart
+function addToCart(id) {
+    const book = books.find(book => book.id === id);
+    cart.push(book);
+    updateCart();
 }
 
-// Function to handle adding a new post
-function addPost(event) {
-    event.preventDefault(); // Prevent form from submitting the traditional way
-
-    // Get form values
-    const title = document.getElementById('postTitle').value;
-    const content = document.getElementById('postContent').value;
-    const category = document.getElementById('postCategory').value;
-
-    // Create a new post object
-    const newPost = {
-        id: posts.length + 1,
-        title,
-        content,
-        category,
-        file: null // No file associated since it's not from a text file
-    };
-
-    // Add the new post to the array and reload the posts
-    posts.push(newPost);
-    loadPosts();
-
-    // Reset the form
-    document.getElementById('postForm').reset();
+// Function to update cart
+function updateCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((book, index) => {
+        const cartItem = document.createElement('li');
+        cartItem.textContent = `${book.title} - $${book.price.toFixed(2)}`;
+        cartItems.appendChild(cartItem);
+        total += book.price;
+    });
+    cartTotal.textContent = total.toFixed(2);
 }
 
-// Load posts when the page loads
-window.onload = loadPosts;
+// Function for search feature
+document.getElementById('searchBar').addEventListener('input', function(e) {
+    const searchText = e.target.value.toLowerCase();
+    const filteredBooks = books.filter(book => 
+        book.title.toLowerCase().includes(searchText) || 
+        book.author.toLowerCase().includes(searchText)
+    );
+    displayBooks(filteredBooks);
+});
 
-// Add event listener for the form
-document.getElementById('postForm').addEventListener('submit', addPost);
+// Initial load
+displayBooks(books);
